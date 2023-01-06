@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var todosRouter = require('./routes/todos');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -19,7 +18,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', todosRouter);
+app.get('/', (req, res) => {
+  res.send('Welcome to the Todos App')
+})
+
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
